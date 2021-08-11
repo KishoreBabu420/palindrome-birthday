@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --clr-blue: #6feaf6;
+  --clr-gray: #777;
+  --clr-white: #fff;
+  --clr-dark: #1c2042;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--clr-dark);
+  color: var(--clr-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 50vw;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.header__title {
+  font-size: 2.5rem;
+  border-bottom: 5px solid var(--clr-blue);
+}
+
+/* main */
+
+main {
+  min-width: 25%;
+  min-height: 20rem;
+  border-radius: 2%;
+  background-color: var(--clr-white);
+  box-shadow: 3px 3px 5px var(--clr-gray);
+  color: var(--clr-dark);
+}
+.container {
+  min-width: 80%;
+  height: 100%;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-control {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+}
+
+.input-control label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.input-control input {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 2px solid var(--clr-dark);
+  transition: all ease 0.2s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+.input-control input[type='number']:focus,
+.input-control input[type='number']:active {
+  border: none;
+  outline: 2px solid var(--clr-blue);
+}
+
+.btn {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem 1rem;
+  background-color: var(--clr-dark);
+  color: var(--clr-white);
+  transition: all ease 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(0.2rem);
+}
+
+.error-message {
+  display: none;
+  font-size: 1.2rem;
+  text-align: center;
+  color: red;
+}
+
+.success-container {
+  display: none;
+  margin: 0.5rem auto;
+  min-height: 5rem;
+  width: 20rem;
+}
+
+.success-message {
+  font-size: 1.2rem;
+  text-align: center;
+  color: green;
+}
