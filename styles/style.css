@@ -78,23 +78,6 @@ main {
   border: 2px solid var(--clr-dark);
   transition: all ease 0.2s;
 }
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-.input-control input[type='number']:focus,
-.input-control input[type='number']:active {
-  border: none;
-  outline: 2px solid var(--clr-blue);
-}
-
 .btn {
   font-size: 1.2rem;
   font-weight: bold;
@@ -114,13 +97,6 @@ input[type='number'] {
   font-size: 1.2rem;
   text-align: center;
   color: red;
-}
-
-.success-container {
-  display: none;
-  margin: 0.5rem auto;
-  min-height: 5rem;
-  width: 20rem;
 }
 
 .success-message {
