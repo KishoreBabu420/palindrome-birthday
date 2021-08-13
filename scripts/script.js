@@ -5,7 +5,29 @@ const errorMessage = document.getElementById('error-message');
 const successMessage = document.getElementById('success-message');
 
 // Functions
+const showErrorMessage = function (message) {
+  errorMessage.style.display = 'block';
+  errorMessage.textContent = message;
+};
 
+const showSuccessMessage = function (message) {
+  successMessage.style.display = 'block';
+  successMessage.textContent = message;
+};
+
+const reverseString = function (str) {
+  let listOfChars = str.split('');
+  let reversedListOfChar = listOfChars.reverse();
+  let reversedString = reversedListOfChar.join('');
+  return reversedString;
+};
+
+const isPalindrome = function (str) {
+  let reversedString = reverseString(str);
+  return str === reversedString;
+};
+
+//convert input into object
 const dateToObjectConvertor = function () {
   let birthdayString = birthDay.value;
 
@@ -22,28 +44,6 @@ const dateToObjectConvertor = function () {
     };
     return dateObject;
   }
-};
-
-const showErrorMessage = function (message) {
-  errorMessage.style.display = 'block';
-  errorMessage.textContent = message;
-};
-
-const showSuccess = function (message) {
-  successMessage.style.display = 'block';
-  successMessage.textContent = message;
-};
-
-const reverseString = function (str) {
-  let listOfChars = str.split('');
-  let reversedListOfChar = listOfChars.reverse();
-  let reversedString = reversedListOfChar.join('');
-  return reversedString;
-};
-
-const isPalindrome = function (str) {
-  let reversedString = reverseString(str);
-  return str === reversedString;
 };
 //convert data entered to string in specified format
 const dateFormatter = function (date) {
@@ -65,10 +65,47 @@ const dateFormatter = function (date) {
   return dateInStr;
 };
 
+//create all the possible date formats
+const getAllDateFormats = function (date) {
+  let ddmmyyyy = date.day + date.month + date.year;
+  let mmddyyyy = date.month + date.day + date.year;
+  let yyyymmdd = date.year + date.month + date.day;
+  let ddmmyy = date.day + date.month + date.year.slice(-2);
+  let mmddyy = date.month + date.day + date.year.slice(-2);
+  let yyddmm = date.year.slice(-2) + date.day + date.month;
+
+  return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yyddmm];
+};
+
+//check palindrome for all the formats
+const allFormatsPalindromeChecker = function (date) {
+  let allDateFormats = getAllDateFormats(date);
+  let palindromeResult = [];
+
+  for (let i = 0; i < allDateFormats.length; i++) {
+    let result = isPalindrome(allDateFormats[i]);
+    palindromeResult.push(result);
+  }
+  return palindromeResult;
+};
 // Event Listeners
 
 btnCheck.addEventListener('click', () => {
   let dateObject = dateToObjectConvertor();
   let dateStr = dateFormatter(dateObject);
-  console.log(dateStr);
+  let resultList = allFormatsPalindromeChecker(dateStr);
+  let palindrome = false;
+
+  for (let i = 0; i < resultList.length; i++) {
+    if (resultList[i]) {
+      palindrome = true;
+      break;
+    }
+  }
+
+  if (palindrome) {
+    showSuccessMessage('You birthday is Palindrome');
+  } else {
+    showErrorMessage('You birthday is not a Palindrome');
+  }
 });
