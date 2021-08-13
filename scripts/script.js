@@ -9,7 +9,6 @@ const showErrorMessage = function (message) {
   errorMessage.style.display = 'block';
   errorMessage.textContent = message;
 };
-
 const showSuccessMessage = function (message) {
   successMessage.style.display = 'block';
   successMessage.textContent = message;
@@ -43,6 +42,8 @@ const dateToObjectConvertor = function () {
       year: Number(yyyy),
     };
     return dateObject;
+  } else {
+    showErrorMessage('Select your Birthday');
   }
 };
 //convert data entered to string in specified format
@@ -193,13 +194,13 @@ const getPreviousDate = function (date) {
 };
 
 //get the previousPalindromeDate
-const getPreviousPalindromeDate = function () {
+const getPreviousPalindromeDate = function (date) {
   let previousDate = getPreviousDate(date);
   let ctr = 0;
 
   while (1) {
     ctr++;
-    let dateString = dateFormatter(nextDate);
+    let dateString = dateFormatter(previousDate);
     let resultList = allFormatsPalindromeChecker(dateString);
     for (let i = 0; i < resultList.length; i++) {
       if (resultList[i]) {
@@ -228,6 +229,15 @@ btnCheck.addEventListener('click', () => {
   if (palindrome) {
     showSuccessMessage('You birthday is Palindrome');
   } else {
-    showErrorMessage('You birthday is not a Palindrome');
+    const [ctr1, nextDate] = getNextPalindromeDate(dateStr);
+    const [ctr2, prevDate] = getPreviousPalindromeDate(dateStr);
+    ctr1 < ctr2
+      ? showSuccessMessage(
+          `The nearest palindrome date is  
+          ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr1} days`
+        )
+      : showSuccessMessage(
+          `The nearest palindrome date is  ${prevDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr2} days`
+        );
   }
 });
