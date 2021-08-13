@@ -88,6 +88,128 @@ const allFormatsPalindromeChecker = function (date) {
   }
   return palindromeResult;
 };
+
+//check for Leap year
+const isLeapYear = function (year) {
+  if (year % 400 === 0) return true;
+
+  if (year % 100 === 0) return false;
+
+  if (year % 4 === 0) return true;
+
+  return false;
+};
+
+//Calculate the nextDate
+
+const getNextDate = function (date) {
+  let day = date.day + 1;
+  let month = date.month;
+  let year = date.year;
+
+  let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (month === 2) {
+    if (isLeapYear(year)) {
+      if (day > 29) {
+        day = 1;
+        month = 3;
+      }
+    } else {
+      if (day > 28) {
+        day = 1;
+        month = 3;
+      }
+    }
+  } else {
+    if (day > daysInMonth[month - 1]) {
+      day = 1;
+      month++;
+    }
+  }
+
+  if (month > 12) {
+    month = 1;
+    year++;
+  }
+
+  return {
+    day: day,
+    month: month,
+    year: year,
+  };
+};
+
+//Get the next PalindromeDate
+const getNextPalindromeDate = function (date) {
+  let nextDate = getNextDate(date);
+  let ctr = 0;
+
+  while (1) {
+    ctr++;
+    let dateString = dateFormatter(nextDate);
+    let resultList = allFormatsPalindromeChecker(dateString);
+
+    for (let i = 0; i < resultList.length; i++) {
+      if (resultList[i]) {
+        return [ctr, nextDate];
+      }
+    }
+    nextDate = getNextDate(nextDate);
+  }
+};
+//Calculate the previousDate
+
+const getPreviousDate = function (date) {
+  let day = date.day - 1;
+  let month = date.month;
+  let year = date.year;
+
+  let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (day === 0) {
+    month--;
+
+    if (month === 0) {
+      month = 12;
+      day = 31;
+      year--;
+    } else if (month === 2) {
+      if (isLeapYear(year)) {
+        day = 29;
+      } else {
+        day = 28;
+      }
+    } else {
+      day = daysInMonth[month - 1];
+    }
+  }
+
+  return {
+    day: day,
+    month: month,
+    year: year,
+  };
+};
+
+//get the previousPalindromeDate
+const getPreviousPalindromeDate = function () {
+  let previousDate = getPreviousDate(date);
+  let ctr = 0;
+
+  while (1) {
+    ctr++;
+    let dateString = dateFormatter(nextDate);
+    let resultList = allFormatsPalindromeChecker(dateString);
+    for (let i = 0; i < resultList.length; i++) {
+      if (resultList[i]) {
+        return [ctr, previousDate];
+      }
+    }
+    previousDate = getPreviousDate(previousDate);
+  }
+};
+
 // Event Listeners
 
 btnCheck.addEventListener('click', () => {
