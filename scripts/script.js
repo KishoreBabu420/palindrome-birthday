@@ -6,7 +6,7 @@ const successMessage = document.getElementById('success-message');
 
 // Functions
 
-const dateToObjectConvertor = function (){
+const dateToObjectConvertor = function () {
   let birthdayString = birthDay.value;
 
   if (birthdayString !== '') {
@@ -18,11 +18,11 @@ const dateToObjectConvertor = function (){
     let dateObject = {
       day: Number(dd),
       month: Number(mm),
-      year: Number(yyyy)
+      year: Number(yyyy),
     };
-
     return dateObject;
-}
+  }
+};
 
 const showErrorMessage = function (message) {
   errorMessage.style.display = 'block';
@@ -67,4 +67,8 @@ const dateFormatter = function (date) {
 
 // Event Listeners
 
-  
+btnCheck.addEventListener('click', () => {
+  let dateObject = dateToObjectConvertor();
+  let dateStr = dateFormatter(dateObject);
+  console.log(dateStr);
+});
