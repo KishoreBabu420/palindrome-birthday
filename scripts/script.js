@@ -211,9 +211,7 @@ const getPreviousPalindromeDate = function (date) {
   }
 };
 
-// Event Listeners
-
-btnCheck.addEventListener('click', () => {
+const populateUI = function () {
   let dateObject = dateToObjectConvertor();
   let dateStr = dateFormatter(dateObject);
   let resultList = allFormatsPalindromeChecker(dateStr);
@@ -240,4 +238,8 @@ btnCheck.addEventListener('click', () => {
           `The nearest palindrome date is  ${prevDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr2} days`
         );
   }
-});
+};
+
+// Event Listeners
+
+btnCheck.addEventListener('click', populateUI);
