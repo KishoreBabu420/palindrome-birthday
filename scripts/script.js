@@ -6,6 +6,24 @@ const successMessage = document.getElementById('success-message');
 
 // Functions
 
+const dateToObjectConvertor = function (){
+  let birthdayString = birthDay.value;
+
+  if (birthdayString !== '') {
+    let date = birthdayString.split('-');
+    let yyyy = date[0];
+    let mm = date[1];
+    let dd = date[2];
+
+    let dateObject = {
+      day: Number(dd),
+      month: Number(mm),
+      year: Number(yyyy)
+    };
+
+    return dateObject;
+}
+
 const showErrorMessage = function (message) {
   errorMessage.style.display = 'block';
   errorMessage.textContent = message;
@@ -48,6 +66,5 @@ const dateFormatter = function (date) {
 };
 
 // Event Listeners
-btnCheck.addEventListener('click', () => {
-  console.log('clicked');
-});
+
+  
