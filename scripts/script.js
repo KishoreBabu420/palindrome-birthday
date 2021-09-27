@@ -104,9 +104,9 @@ const isLeapYear = function (year) {
 //Calculate the nextDate
 
 const getNextDate = function (date) {
-  let day = date.day + 1;
-  let month = date.month;
-  let year = date.year;
+  let day = Number(date.day) + 1;
+  let month = Number(date.month);
+  let year = Number(date.year);
 
   let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -150,7 +150,7 @@ const getNextPalindromeDate = function (date) {
     ctr++;
     let dateString = dateFormatter(nextDate);
     let resultList = allFormatsPalindromeChecker(dateString);
-
+    console.log(ctr, nextDate);
     for (let i = 0; i < resultList.length; i++) {
       if (resultList[i]) {
         return [ctr, nextDate];
@@ -162,9 +162,9 @@ const getNextPalindromeDate = function (date) {
 //Calculate the previousDate
 
 const getPreviousDate = function (date) {
-  let day = date.day - 1;
-  let month = date.month;
-  let year = date.year;
+  let day = Number(date.day) - 1;
+  let month = Number(date.month);
+  let year = Number(date.year);
 
   let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
