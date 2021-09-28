@@ -150,7 +150,6 @@ const getNextPalindromeDate = function (date) {
     ctr++;
     let dateString = dateFormatter(nextDate);
     let resultList = allFormatsPalindromeChecker(dateString);
-    console.log(ctr, nextDate);
     for (let i = 0; i < resultList.length; i++) {
       if (resultList[i]) {
         return [ctr, nextDate];
@@ -229,14 +228,21 @@ const populateUI = function () {
   } else {
     const [ctr1, nextDate] = getNextPalindromeDate(dateStr);
     const [ctr2, prevDate] = getPreviousPalindromeDate(dateStr);
-    ctr1 < ctr2
-      ? showSuccessMessage(
-          `The nearest palindrome date is  
+    if (ctr1 === ctr2) {
+      showSuccessMessage(
+        `The next palindrome date is  
+          ${nextDate.day}-${nextDate.month}-${nextDate.year},& your previous palindrome date is   ${prevDate.day}-${nextDate.month}-${nextDate.year}, you missed both by ${ctr2} days `
+      );
+    } else if (ctr1 < ctr2) {
+      showSuccessMessage(
+        `The nearest palindrome date is
           ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr1} days`
-        )
-      : showSuccessMessage(
-          `The nearest palindrome date is  ${prevDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr2} days`
-        );
+      );
+    } else if (ctr2 < ctr1) {
+      showSuccessMessage(
+        `The nearest palindrome date is  ${prevDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr2} days`
+      );
+    }
   }
 };
 
