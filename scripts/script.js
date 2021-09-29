@@ -104,9 +104,9 @@ const isLeapYear = function (year) {
 //Calculate the nextDate
 
 const getNextDate = function (date) {
-  let day = Number(date.day) + 1;
-  let month = Number(date.month);
-  let year = Number(date.year);
+  let day = date.day + 1;
+  let month = date.month;
+  let year = date.year;
 
   let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -161,9 +161,9 @@ const getNextPalindromeDate = function (date) {
 //Calculate the previousDate
 
 const getPreviousDate = function (date) {
-  let day = Number(date.day) - 1;
-  let month = Number(date.month);
-  let year = Number(date.year);
+  let day = date.day - 1;
+  let month = date.month;
+  let year = date.year;
 
   let daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
@@ -228,6 +228,7 @@ const populateUI = function () {
   } else {
     const [ctr1, nextDate] = getNextPalindromeDate(dateStr);
     const [ctr2, prevDate] = getPreviousPalindromeDate(dateStr);
+    console.log(ctr1, ctr2, nextDate, prevDate);
     if (ctr1 === ctr2) {
       showSuccessMessage(
         `The next palindrome date is  
@@ -247,5 +248,4 @@ const populateUI = function () {
 };
 
 // Event Listeners
-
 btnCheck.addEventListener('click', populateUI);
